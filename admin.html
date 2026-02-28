@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Products</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<!-- Admin login overlay -->
+<div id="admin-login" class="admin-login">
+  <form id="admin-login-form" class="admin-login-form">
+    <h2>Admin Login</h2>
+    <label>Username<br><input id="login-username" class="form-control" autocomplete="username"></label>
+    <label>Password<br><input id="login-password" type="password" class="form-control" autocomplete="current-password"></label>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end;">
+      <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+  </form>
+</div>
+
+<div id="admin-app" style="display:none;">
+<nav class="navbar">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-icon">D</div><div class="nav-logo-text"><span>DGBS Delights</span><span>Foods</span></div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="admin.html" class="active">Admin</a></li>
+  </ul>
+</nav>
+
+<main style="padding:36px 5%;">
+  <div style="display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto 12px;">
+    <h1 style="margin:0">Product Admin</h1>
+    <div id="sync-status" class="sync-offline">Offline</div>
+  </div>
+  <p style="color:var(--gray)">Add new products or edit existing ones. Changes are saved to your browser's localStorage and auto-synced when the server is available.</p>
+
+  <section class="admin-grid">
+    <form id="product-form" class="admin-form">
+      <input type="hidden" id="prod-id">
+      <div class="form-row">
+        <label class="form-label">Name</label>
+        <input id="prod-name" class="form-control" required>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Category</label>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <select id="prod-category-select" class="form-control"></select>
+          <input id="prod-category-new" class="form-control" placeholder="New category">
+          <button id="add-category" class="btn" type="button">Add</button>
+        </div>
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label class="form-label">Price</label>
+          <input id="prod-price" class="form-control" type="number" step="0.01">
+        </div>
+        <div>
+          <label class="form-label">Old Price</label>
+          <input id="prod-oldprice" class="form-control" type="number" step="0.01">
+        </div>
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label class="form-label">Category Tag(s)</label>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <select id="prod-tag-select" class="form-control"></select>
+            <input id="prod-tag-new" class="form-control" placeholder="New tag">
+            <button id="add-tag" class="btn" type="button">Add</button>
+          </div>
+          <div style="margin-top:8px;">
+            <input id="prod-tag" class="form-control" placeholder="Selected tags (comma separated)">
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Badge</label>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <select id="prod-badge-select" class="form-control"></select>
+            <input id="prod-badge-new" class="form-control" placeholder="New badge">
+            <button id="add-badge" class="btn" type="button">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Weight</label>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <select id="prod-weight-select" class="form-control"></select>
+          <input id="prod-weight-new" class="form-control" placeholder="New weight (e.g. 500g)">
+          <button id="add-weight" class="btn" type="button">Add</button>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Image (choose from device)</label>
+        <input id="prod-image-file" type="file" accept="image/*" class="form-control-file">
+        <input id="prod-img" type="hidden">
+        <div id="img-preview" class="img-preview">No image selected</div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Description</label>
+        <textarea id="prod-desc" class="form-control" rows="4"></textarea>
+      </div>
+
+      <div class="form-row inline-row">
+        <label><input type="checkbox" id="prod-instock"> In stock</label>
+      </div>
+
+      <div class="form-row actions">
+        <button class="btn btn-primary" type="submit">Save Product</button>
+        <button class="btn" type="button" id="prod-reset">Reset</button>
+        <button class="btn" type="button" id="export-json">Export JSON</button>
+      </div>
+    </form>
+
+    <div class="admin-list-wrap">
+      <h3>Products</h3>
+      <div id="admin-list" class="admin-list"></div>
+    </div>
+  </section>
+
+  <p style="margin-top:18px;color:var(--gray)">Note: This is a simple browser-based admin. To persist changes to a real server, export the JSON and update your repository/server accordingly.</p>
+  </main>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

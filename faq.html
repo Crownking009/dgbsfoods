@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — DGBS Delights Foods</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .faq-section { padding: 70px 5%; max-width: 860px; margin: 0 auto; }
+    .faq-intro { text-align: center; margin-bottom: 56px; }
+    .faq-intro h2 { color: var(--navy); margin-bottom: 12px; }
+    .faq-intro p { color: var(--gray); max-width: 560px; margin: 0 auto; }
+
+    .faq-category { margin-bottom: 48px; }
+    .faq-category-title { display: flex; align-items: center; gap: 12px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; color: var(--navy); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--gold); }
+
+    .faq-item { border: 1.5px solid #eee; border-radius: var(--radius-sm); margin-bottom: 10px; overflow: hidden; transition: var(--transition); }
+    .faq-item:hover { border-color: rgba(51,66,109,0.2); }
+    .faq-item.open { border-color: var(--navy); box-shadow: 0 4px 16px rgba(51,66,109,0.1); }
+
+    .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; cursor: pointer; font-weight: 700; font-size: 0.95rem; color: var(--navy); gap: 16px; user-select: none; }
+    .faq-q:hover { background: rgba(51,66,109,0.03); }
+
+    .faq-icon { width: 28px; height: 28px; background: var(--gray-light); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; transition: var(--transition); color: var(--navy); }
+    .faq-item.open .faq-icon { background: var(--navy); color: white; transform: rotate(45deg); }
+
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .faq-a-inner { padding: 0 22px 18px; font-size: 0.92rem; color: var(--gray); line-height: 1.8; }
+    .faq-a-inner a { color: var(--gold-dark); font-weight: 700; }
+
+    .faq-item.open .faq-a { max-height: 400px; }
+
+    .faq-cta { background: var(--navy); border-radius: var(--radius); padding: 40px; text-align: center; margin-top: 50px; }
+    .faq-cta h3 { color: white; margin-bottom: 10px; }
+    .faq-cta p { color: rgba(255,255,255,0.65); margin-bottom: 24px; font-size: 0.92rem; }
+    .faq-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">D</div>
+    <div class="nav-logo-text"><span>DGBS Delights</span><span>Foods</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html" class="active">FAQ</a></li>
+    <li><a href="terms.html">T&C</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="nav-cart-btn">🛒<span class="cart-count">0</span></button>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav"><ul>
+  <li><a href="index.html">🏠 Home</a></li><li><a href="shop.html">🛍️ Shop</a></li>
+  <li><a href="about.html">ℹ️ About Us</a></li><li><a href="contact.html">📞 Contact</a></li>
+  <li><a href="faq.html" class="active">❓ FAQ</a></li><li><a href="terms.html">📄 T&C / Policy</a></li>
+</ul></div>
+
+<div class="page-header">
+  <h1>Frequently Asked Questions ❓</h1>
+  <p>Everything you need to know about DGBS Delights Foods</p>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span class="current">FAQ</span></div>
+</div>
+
+<section class="faq-section">
+  <div class="faq-intro">
+    <div class="section-label">Got Questions?</div>
+    <h2 class="section-title">We Have Answers</h2>
+    <p>Can't find what you're looking for? <a href="contact.html" style="color:var(--gold-dark);font-weight:700;">Contact us</a> or <a href="https://wa.me/447785539203" target="_blank" style="color:var(--gold-dark);font-weight:700;">chat on WhatsApp</a>.</p>
+  </div>
+
+  <!-- Ordering -->
+  <div class="faq-category">
+    <div class="faq-category-title"><span>🛒</span> Ordering & WhatsApp</div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I place an order?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Simply browse our <a href="shop.html">Shop page</a>, add the products you want to your cart, and then click the "Send Order via WhatsApp" button. This will open WhatsApp with your complete order pre-filled. Send the message and we'll confirm your order and arrange delivery.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do I need a WhatsApp account to order?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes, WhatsApp is currently our main ordering channel. It's free to download and use. You can get it at <a href="https://www.whatsapp.com" target="_blank">whatsapp.com</a>. Alternatively, you can also email us at <a href="mailto:info@dgbsdelightsfoods.com">info@dgbsdelightsfoods.com</a> with your order.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I change or cancel my order after sending it?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes! As long as your order hasn't been dispatched yet, you can change or cancel it by messaging us on WhatsApp as soon as possible. Once an order has been dispatched, we're unable to make changes.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is there a minimum order amount?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">There is no minimum order amount. However, we offer free delivery on all orders over £50. Orders below £50 will incur a delivery charge — please confirm the current delivery rate with us via WhatsApp.</div></div>
+    </div>
+  </div>
+
+  <!-- Delivery -->
+  <div class="faq-category">
+    <div class="faq-category-title"><span>🚚</span> Delivery & Shipping</div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do you deliver across the whole UK?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes! We deliver nationwide across the United Kingdom — England, Scotland, Wales, and Northern Ireland. Whether you're in London, Birmingham, Manchester, Leeds, Glasgow, or anywhere in between, we've got you covered.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How long does delivery take?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Standard delivery typically takes 2–5 working days after order confirmation. We'll keep you updated on your order status via WhatsApp. For urgent orders, please let us know and we'll do our best to accommodate.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How much does delivery cost?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Delivery is FREE on orders over £50. For orders under £50, a delivery charge applies based on your location. Please enquire via WhatsApp for the exact delivery cost to your area before placing your order.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How are products packaged?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">All products are carefully and hygienically packaged to ensure freshness and prevent damage during transit. Dried foods are vacuum-sealed or tightly sealed where appropriate. If you receive any damaged item, please contact us immediately with a photo via WhatsApp.</div></div>
+    </div>
+  </div>
+
+  <!-- Products -->
+  <div class="faq-category">
+    <div class="faq-category-title"><span>🥘</span> Products & Quality</div>
+
+    <div class="faq-item">
+      <div class="faq-q">Are your products authentic and genuine?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. We take great pride in sourcing only 100% authentic Nigerian and African dried foods. All products come from trusted suppliers and are the same quality you would find back home in Nigeria and West Africa.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do you sell palm oil in bulk quantities?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes! We sell palm oil in various sizes from 500ml to 5L canisters. For larger bulk or wholesale quantities, please contact us via WhatsApp or email to discuss pricing and availability.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What if an item I want is out of stock?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">If a product you want is out of stock or not listed on our website, please contact us via WhatsApp. We may be able to source it for you or notify you when it becomes available. We regularly update our stock.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Are the prices shown in British Pounds (GBP)?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes, all prices shown on our website are in British Pounds Sterling (£ GBP) and include VAT where applicable.</div></div>
+    </div>
+  </div>
+
+  <!-- Returns -->
+  <div class="faq-category">
+    <div class="faq-category-title"><span>↩️</span> Returns & Refunds</div>
+
+    <div class="faq-item">
+      <div class="faq-q">What is your returns policy?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Due to the nature of our food products, we are unable to accept returns once items have been opened or used. However, if your order arrives damaged, incorrect, or in poor condition, please contact us within 48 hours of delivery with photographic evidence and we will resolve it promptly. See our full <a href="terms.html">Terms & Conditions</a> for details.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What if I received the wrong item?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">We sincerely apologise if this happens. Please contact us immediately via WhatsApp with a photo of what you received and your order details. We will arrange to send the correct item or issue a refund as quickly as possible.</div></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="faq-cta">
+    <h3>Still Have Questions?</h3>
+    <p>Our friendly team is always ready to help. Reach out to us via WhatsApp or email — we respond fast!</p>
+    <div class="faq-cta-btns">
+      <a href="https://wa.me/447785539203?text=Hello!%20I%20have%20a%20question." target="_blank" class="btn" style="background:#25D366;color:white;border-color:#25D366;">💬 WhatsApp Us</a>
+      <a href="contact.html" class="btn" style="background:white;color:var(--navy);border-color:white;">📧 Email Us</a>
+    </div>
+  </div>
+
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="index.html" class="nav-logo" style="margin-bottom:16px;"><div class="nav-logo-icon">D</div><div class="nav-logo-text"><span>DGBS Delights</span><span>Foods</span></div></a><p>Authentic Nigerian and African dried foods delivered across the UK.</p></div>
+    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="shop.html">Shop</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html">FAQ</a></li><li><a href="terms.html">Terms & Conditions</a></li><li><a href="terms.html#privacy">Privacy Policy</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul class="footer-contact"><li><span class="icon">📞</span> +44 7785 539203</li><li><span class="icon">📧</span> info@dgbsdelightsfoods.com</li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 DGBS Delights Foods. All Rights Reserved.</span></div>
+</footer>
+
+<div class="cart-overlay"></div>
+<div class="cart-drawer">
+  <div class="cart-header"><h3>🛒 Your Order Cart</h3><button class="cart-close">✕</button></div>
+  <div class="cart-items" id="cart-items-container"></div>
+  <div class="cart-footer"><div class="cart-total"><span>Order Total:</span><span id="cart-total-amount">£0.00</span></div><button class="cart-wa-btn" onclick="sendCartToWhatsApp()">💬 Send Order via WhatsApp</button></div>
+</div>
+<a class="floating-wa" href="#"><svg viewBox="0 0 24 24"><path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span class="wa-tooltip">Chat with us!</span></a>
+<button class="scroll-top">↑</button>
+<script src="js/main.js"></script>
+<script>
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>

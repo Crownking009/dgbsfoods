@@ -1,0 +1,27 @@
+/* Product page styles */
+.product-detail { max-width: 1100px; margin: 28px auto; }
+.product-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+.product-gallery { background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)); padding: 18px; border-radius: 12px; box-shadow: var(--shadow); }
+.product-gallery img { border-radius: 10px; width: 100%; height: auto; display:block; }
+.product-info { background: white; padding: 22px; border-radius: 12px; box-shadow: var(--shadow); }
+.product-tag { display:inline-block; padding:6px 12px; background: rgba(239,152,13,0.08); color:var(--gold); font-weight:800; border-radius:999px; margin-bottom:12px; }
+.product-title { font-size: clamp(1.8rem, 3.8vw, 2.6rem); margin-bottom:8px; }
+.product-price { font-size:1.6rem; font-weight:900; color:var(--navy); margin-bottom:10px; }
+.product-desc { color:var(--text); margin-bottom:18px; line-height:1.7; }
+.product-actions { display:flex; gap:12px; align-items:center; }
+.btn { padding:10px 14px; border-radius:10px; border:1px solid rgba(16,24,40,0.06); cursor:pointer; }
+.btn.btn-primary { background:var(--navy); color:white; border-color:var(--navy); font-weight:800; }
+.btn.btn-outline { background:transparent; color:var(--navy); border:1px solid rgba(16,24,40,0.08); }
+.product-badge { position: absolute; top: 14px; right: 14px; background: rgba(239,152,13,0.12); border:1px solid rgba(239,152,13,0.25); color:var(--gold); padding:8px 12px; border-radius:999px; font-weight:800; }
+
+/* Related grid overrides */
+#related-grid { display:flex; gap:14px; flex-wrap:wrap; }
+#related-grid .product-card { width:220px; background:white; padding:10px; border-radius:10px; box-shadow: 0 6px 18px rgba(22,30,41,0.06); cursor:pointer; transition: transform 0.18s ease, box-shadow 0.18s ease; }
+#related-grid .product-card:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(22,30,41,0.10); }
+#related-grid .product-card img { border-radius:8px; height:140px; object-fit:cover; }
+#related-grid .product-card div { padding-top:8px; }
+
+@media (max-width: 900px) {
+  .product-row { grid-template-columns: 1fr; }
+  #related-grid { justify-content:center; }
+}

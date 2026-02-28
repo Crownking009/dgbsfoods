@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DGBS Delights Foods — Authentic African & Nigerian Dried Foods UK</title>
+  <meta name="description" content="Shop authentic Nigerian and African dried foods in the UK. Palm oil, dried catfish, garri, egusi, crayfish, snail and more. Nationwide UK delivery.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <style>
+    /* ---- HOME SPECIFIC ---- */
+    body { padding-top: 0; }
+
+    /* Announcement bar */
+    .announce-bar {
+      background: var(--gold);
+      color: var(--navy-dark);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .announce-bar a { color: var(--navy-dark); text-decoration: underline; }
+
+    /* Trust badges */
+    .trust-bar {
+      background: var(--gray-light);
+      padding: 18px 5%;
+    }
+
+    .trust-bar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .trust-item .icon {
+      font-size: 1.4rem;
+    }
+
+    /* Categories section */
+    .cats-section {
+      padding: 80px 5%;
+      text-align: center;
+      background: white;
+    }
+
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 18px;
+      max-width: 1100px;
+      margin: 0 auto;
+      margin-top: 40px;
+    }
+
+    .cat-card {
+      background: var(--gray-light);
+      border-radius: var(--radius);
+      padding: 28px 16px 22px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+    }
+
+    .cat-card:hover {
+      border-color: var(--gold);
+      background: white;
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .cat-card .cat-emoji { font-size: 2.4rem; margin-bottom: 12px; display: block; }
+    .cat-card h3 { font-family: 'Nunito', sans-serif; font-size: 0.92rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .cat-card p { font-size: 0.76rem; color: var(--gray); }
+
+    /* Featured products */
+    .featured-section {
+      padding: 80px 5%;
+      background: var(--gray-light);
+    }
+
+    .featured-inner { max-width: 1200px; margin: 0 auto; }
+
+    .featured-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 22px;
+    }
+
+    /* Product card */
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(22,30,41,0.06);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid rgba(16,24,40,0.04);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(22,30,41,0.10);
+    }
+
+    .product-card-img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 72%; /* 16:11-ish aspect ratio */
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02));
+    }
+
+    .product-card-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-card-img-wrap img { transform: scale(1.06); }
+
+    .product-badge {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      background: rgba(255,255,255,0.95);
+      color: var(--navy);
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.78rem;
+      box-shadow: 0 6px 14px rgba(22,30,41,0.06);
+    }
+
+    .product-wishlist {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.98rem;
+      transition: transform 0.12s ease, background 0.12s ease;
+    }
+
+    .product-wishlist.wished { background: rgba(239,152,13,0.12); color: var(--gold-dark); }
+
+    .product-card-body {
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1 1 auto;
+    }
+
+    .product-cat-tag { font-size: 0.72rem; color: var(--gold-dark); font-weight:700; }
+    .product-name { font-size: 1rem; font-weight:800; color:var(--navy); line-height:1.15; }
+    .product-desc { font-size: 0.86rem; color:var(--gray); line-height:1.4; min-height:40px; }
+
+    .product-footer { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:auto; }
+
+    .product-price { display:flex; align-items:baseline; gap:8px; }
+    .price-current { font-weight:900; color:var(--navy); font-size:1.02rem; }
+    .price-old { font-size:0.82rem; color:var(--gray); text-decoration:line-through; }
+
+    .add-cart-btn {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight:800;
+      transition: transform 0.12s ease, background 0.12s ease;
+    }
+
+    .add-cart-btn.added { background: var(--gold); color: var(--navy); }
+
+    @media (max-width: 900px) {
+      .featured-inner { padding: 0 8px; }
+      .product-card-img-wrap { padding-top: 64%; }
+    }
+
+    @media (max-width: 520px) {
+      .featured-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .product-card-img-wrap { padding-top: 68%; }
+    }
+
+    /* Why Us */
+    .why-section {
+      padding: 80px 5%;
+      background: var(--navy);
+      text-align: center;
+    }
+
+    .why-section .section-title { color: white; }
+    .why-section .section-subtitle { color: rgba(255,255,255,0.6); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      margin-top: 48px;
+    }
+
+    .why-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      transition: var(--transition);
+    }
+
+    .why-card:hover {
+      background: rgba(239,152,13,0.12);
+      border-color: rgba(239,152,13,0.3);
+      transform: translateY(-4px);
+    }
+
+    .why-icon { font-size: 2.2rem; margin-bottom: 16px; }
+    .why-card h3 { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; color: var(--gold); margin-bottom: 10px; }
+    .why-card p { font-size: 0.87rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+    /* Banner CTA */
+    .banner-cta {
+      padding: 90px 5%;
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, #f7c96e 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-cta::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -10%;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      pointer-events: none;
+    }
+
+    .banner-cta::after {
+      content: '';
+      position: absolute;
+      bottom: -20%; left: -5%;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+
+    .banner-cta h2 { font-size: clamp(2rem, 5vw, 3rem); color: var(--navy-dark); margin-bottom: 16px; }
+    .banner-cta p { font-size: 1.05rem; color: var(--navy); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+    /* Testimonials */
+    .reviews-section {
+      padding: 80px 5%;
+      background: white;
+      text-align: center;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+      margin-top: 48px;
+    }
+
+    .review-card {
+      background: var(--gray-light);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: left;
+    }
+
+    .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .review-text { font-size: 0.9rem; color: var(--text); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: 10px; }
+    .review-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; }
+    .review-name { font-weight: 700; font-size: 0.88rem; color: var(--navy); }
+    .review-location { font-size: 0.76rem; color: var(--gray); }
+
+    /* Newsletter */
+    .newsletter-section {
+      padding: 70px 5%;
+      background: var(--navy-dark);
+      text-align: center;
+    }
+
+    .newsletter-section h2 { color: white; margin-bottom: 10px; }
+    .newsletter-section p { color: rgba(255,255,255,0.6); margin-bottom: 30px; }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 13px 16px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem;
+    }
+
+    .newsletter-form input:focus { outline: 2px solid var(--gold); }
+
+    /* Fade in */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      .newsletter-form { flex-direction: column; }
+      .cats-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .trust-bar-inner { justify-content: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">D</div>
+    <div class="nav-logo-text">
+      <span>DGBS Delights</span>
+      <span>Foods</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="terms.html">T&C</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="nav-cart-btn" title="View Cart">
+      🛒
+      <span class="cart-count">0</span>
+    </button>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav">
+  <ul>
+    <li><a href="index.html" class="active">🏠 Home</a></li>
+    <li><a href="shop.html">🛍️ Shop</a></li>
+    <li><a href="about.html">ℹ️ About Us</a></li>
+    <li><a href="contact.html">📞 Contact</a></li>
+    <li><a href="faq.html">❓ FAQ</a></li>
+    <li><a href="terms.html">📄 T&C / Policy</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================
+     HERO CAROUSEL — 5 Slides, Cinematic Style
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-slides">
+
+    <!-- Slide 1 -->
+    <div class="hero-slide active">
+      <div class="hero-slide-bg" style="background-image:url('assets/images/palmoil.jpg')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-slide-tag">🇳🇬 Authentic African Taste</div>
+        <h1>The Flavours of <em>Home, Delivered</em> to Your Door</h1>
+        <p>Premium Nigerian and African dried foods, sourced with care and delivered anywhere in the UK. Real taste, every time.</p>
+        <div class="hero-slide-btns">
+          <a href="shop.html" class="btn btn-primary">Shop Now →</a>
+          <a href="about.html" class="btn btn-outline">Our Story</a>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-inner">
+          <div class="hero-badge-num">100%</div>
+          <div class="hero-badge-text">Authentic<br>African Foods</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('assets/images/ponmo.jpg')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-slide-tag">🐟 Dried Fish & Seafood</div>
+        <h1>The Deepest <em>Smokes & Umami</em> in Every Bite</h1>
+        <p>From dried catfish to whole crayfish and snail — our fish range brings the soulful base every great soup deserves.</p>
+        <div class="hero-slide-btns">
+          <a href="shop.html?cat=fish" class="btn btn-primary">Explore Fish →</a>
+          <a href="contact.html" class="btn btn-outline">WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-inner">
+          <div class="hero-badge-num">UK</div>
+          <div class="hero-badge-text">Nationwide<br>Delivery</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('assets/images/Ogbonoseed.jpg')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-slide-tag">🌾 Grains, Garri & Egusi</div>
+        <h1>Your Kitchen <em>Staples, Packed</em> With Tradition</h1>
+        <p>White garri, red Ijebu garri, ground egusi and more — the grains and seeds that turn a house into a home.</p>
+        <div class="hero-slide-btns">
+          <a href="shop.html?cat=grains" class="btn btn-primary">Shop Grains →</a>
+          <a href="shop.html" class="btn btn-outline">All Products</a>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-inner">
+          <div class="hero-badge-num">50+</div>
+          <div class="hero-badge-text">Products<br>Available</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('assets/images/garri.jpg')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-slide-tag">🛢️ Oils & Kitchen Essentials</div>
+        <h1>Pure Red Palm Oil — <em>Nature's Gold,</em> Straight to You</h1>
+        <p>Unrefined, unprocessed and deeply nutritious. Our premium palm oil brings authentic West African richness to every dish.</p>
+        <div class="hero-slide-btns">
+          <a href="shop.html?cat=oils" class="btn btn-primary">Shop Oils →</a>
+          <a href="shop.html" class="btn btn-outline">View All</a>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-inner">
+          <div class="hero-badge-num">🏆</div>
+          <div class="hero-badge-text">Premium<br>Quality Only</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('assets/images/fishdried.jpg')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-slide-tag">📦 Order Via WhatsApp</div>
+        <h1>Easy Ordering, <em>Fast Delivery,</em> Happy Kitchen</h1>
+        <p>Build your cart, send your order via WhatsApp and get your favourite African foods delivered straight to your door — hassle-free.</p>
+        <div class="hero-slide-btns">
+          <a href="shop.html" class="btn btn-primary">Start Shopping →</a>
+          <a href="https://wa.me/447785539203" target="_blank" class="btn btn-outline" style="background:rgba(37,211,102,0.15);border-color:#25D366;color:#25D366;">💬 WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-inner">
+          <div class="hero-badge-num">24/7</div>
+          <div class="hero-badge-text">WhatsApp<br>Support</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero-slides -->
+
+  <!-- Carousel Nav -->
+  <div class="hero-nav">
+    <div class="hero-dots">
+      <button class="hero-dot active"></button>
+      <button class="hero-dot"></button>
+      <button class="hero-dot"></button>
+      <button class="hero-dot"></button>
+      <button class="hero-dot"></button>
+    </div>
+    <div class="hero-arrows">
+      <button class="hero-arrow hero-prev" aria-label="Previous">←</button>
+      <button class="hero-arrow hero-next" aria-label="Next">→</button>
+    </div>
+  </div>
+
+  <div class="hero-progress" style="width:0%"></div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="icon">🚚</span> Free Delivery Over £50</div>
+    <div class="trust-item"><span class="icon">💬</span> Order via WhatsApp</div>
+    <div class="trust-item"><span class="icon">🇳🇬</span> 100% Authentic Products</div>
+    <div class="trust-item"><span class="icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> UK Nationwide Delivery</div>
+    <div class="trust-item"><span class="icon">⭐</span> 5-Star Rated Service</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CATEGORIES SECTION
+     ============================================================ -->
+<section class="cats-section">
+  <div>
+    <div class="section-label">Browse by Category</div>
+    <h2 class="section-title">Everything Your Kitchen Needs</h2>
+    <p class="section-subtitle">From pantry staples to special ingredients — all authentic, all Nigerian.</p>
+  </div>
+  <div class="cats-grid">
+    <a href="shop.html?cat=oils" class="cat-card fade-in">
+      <span class="cat-emoji">🛢️</span>
+      <h3>Oils & Fats</h3>
+      <p>Palm oil, kernel oil</p>
+    </a>
+    <a href="shop.html?cat=fish" class="cat-card fade-in">
+      <span class="cat-emoji">🐟</span>
+      <h3>Dried Fish</h3>
+      <p>Catfish, crayfish, snail</p>
+    </a>
+    <a href="shop.html?cat=grains" class="cat-card fade-in">
+      <span class="cat-emoji">🌾</span>
+      <h3>Grains & Flour</h3>
+      <p>Garri, egusi, ogbono</p>
+    </a>
+    <a href="shop.html?cat=spices" class="cat-card fade-in">
+      <span class="cat-emoji">🌿</span>
+      <h3>Spices</h3>
+      <p>Uziza, iru, ehuru</p>
+    </a>
+    <a href="shop.html?cat=snacks" class="cat-card fade-in">
+      <span class="cat-emoji">🥜</span>
+      <h3>Snacks</h3>
+      <p>Chin chin, groundnuts</p>
+    </a>
+    <a href="shop.html?cat=soups" class="cat-card fade-in">
+      <span class="cat-emoji">🍲</span>
+      <h3>Soup Ingredients</h3>
+      <p>Oha, bitterleaf, ogbono</p>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURED PRODUCTS
+     ============================================================ -->
+<section class="featured-section">
+  <div class="featured-inner">
+    <div class="featured-header fade-in">
+      <div>
+        <div class="section-label">Customer Favourites</div>
+        <h2 class="section-title" style="margin-bottom:0">Best Selling Products</h2>
+      </div>
+      <a href="shop.html" class="btn btn-primary">View All Products →</a>
+    </div>
+    <div class="featured-grid" id="featured-grid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY CHOOSE US
+     ============================================================ -->
+<section class="why-section fade-in">
+  <div class="section-label" style="color:var(--gold-light)">Why Shop With Us</div>
+  <h2 class="section-title">The DGBS Difference</h2>
+  <p class="section-subtitle">We know what it means to miss the taste of home. That's why we never compromise on quality.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🇳🇬</div>
+      <h3>100% Authentic</h3>
+      <p>Every product is carefully sourced directly from Nigeria and West Africa — no substitutes, no shortcuts.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚚</div>
+      <h3>UK Nationwide Delivery</h3>
+      <p>We deliver to every corner of the UK. Fast, reliable and packaged to preserve freshness.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💬</div>
+      <h3>WhatsApp Ordering</h3>
+      <p>No complicated checkout. Build your order and send it directly via WhatsApp for a personal touch.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">✅</div>
+      <h3>Quality Guaranteed</h3>
+      <p>All our products are hygienically packaged and pass quality checks before they reach your door.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BANNER CTA
+     ============================================================ -->
+<section class="banner-cta fade-in">
+  <h2>Ready to Taste Home?</h2>
+  <p>Start your order now — browse our range, add to cart, and send your order via WhatsApp. It's that simple!</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="shop.html" class="btn" style="background:var(--navy);color:white;border-color:var(--navy);">Browse Products →</a>
+    <a href="https://wa.me/447785539203?text=Hello%20DGBS%20Delights%20Foods!%20I%27d%20like%20to%20place%20an%20order." target="_blank" class="btn" style="background:#25D366;color:white;border-color:#25D366;">💬 Chat on WhatsApp</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS
+     ============================================================ -->
+<section class="reviews-section fade-in">
+  <div class="section-label">Happy Customers</div>
+  <h2 class="section-title">What Our Customers Say</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The palm oil is absolutely perfect — exactly like what my mum used back in Lagos. So glad I found DGBS Delights!"</p>
+      <div class="review-author">
+        <div class="review-avatar">A</div>
+        <div>
+          <div class="review-name">Adaeze O.</div>
+          <div class="review-location">London, UK</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Ordering on WhatsApp is so easy and the dried catfish arrived perfectly packaged. Will definitely be ordering again!"</p>
+      <div class="review-author">
+        <div class="review-avatar">K</div>
+        <div>
+          <div class="review-name">Kunle B.</div>
+          <div class="review-location">Birmingham, UK</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The Ijebu garri brought back so many memories. Fast delivery to Manchester and great value. Highly recommend!"</p>
+      <div class="review-author">
+        <div class="review-avatar">C</div>
+        <div>
+          <div class="review-name">Chisom N.</div>
+          <div class="review-location">Manchester, UK</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">"Great selection of products, everything is authentic. The egusi soup I made was absolutely delicious. My family loved it."</p>
+      <div class="review-author">
+        <div class="review-avatar">F</div>
+        <div>
+          <div class="review-name">Fatima Y.</div>
+          <div class="review-location">Leeds, UK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER
+     ============================================================ -->
+<section class="newsletter-section fade-in">
+  <h2>Stay in the Loop 📬</h2>
+  <p>Get exclusive deals, new product alerts and cooking tips delivered to your inbox.</p>
+  <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+    <input type="email" placeholder="Enter your email address" required>
+    <button type="submit" class="btn btn-primary">Subscribe</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+        <div class="nav-logo-icon">D</div>
+        <div class="nav-logo-text">
+          <span>DGBS Delights</span>
+          <span>Foods</span>
+        </div>
+      </a>
+      <p>Authentic Nigerian and African dried foods delivered across the UK. Bringing the taste of home to your kitchen.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link">f</a>
+        <a href="#" class="social-link">in</a>
+        <a href="https://wa.me/447785539203" target="_blank" class="social-link">W</a>
+        <a href="#" class="social-link">@</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="shop.html?cat=oils">Oils & Fats</a></li>
+        <li><a href="shop.html?cat=fish">Dried Fish</a></li>
+        <li><a href="shop.html?cat=grains">Grains & Flour</a></li>
+        <li><a href="shop.html?cat=spices">Spices</a></li>
+        <li><a href="shop.html?cat=soups">Soup Ingredients</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul class="footer-contact">
+        <li><span class="icon">📍</span> 12 Maple Street, London, E1 5AB, United Kingdom</li>
+        <li><span class="icon">📞</span> +44 7785 539203</li>
+        <li><span class="icon">📧</span> info@dgbsdelightsfoods.com</li>
+        <li><span class="icon">🕐</span> Mon – Sat: 9:00am – 7:00pm</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 DGBS Delights Foods. All Rights Reserved.</span>
+    <span>
+      <a href="terms.html">Terms & Conditions</a> &nbsp;|&nbsp;
+      <a href="terms.html#privacy">Privacy Policy</a> &nbsp;|&nbsp;
+      <a href="faq.html">FAQ</a>
+    </span>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay"></div>
+<div class="cart-drawer">
+  <div class="cart-header">
+    <h3>🛒 Your Order Cart</h3>
+    <button class="cart-close">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items-container"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Order Total:</span>
+      <span id="cart-total-amount">£0.00</span>
+    </div>
+    <button class="cart-wa-btn" onclick="sendCartToWhatsApp()">
+      💬 Send Order via WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- Floating WhatsApp -->
+<a class="floating-wa" href="#" title="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="wa-tooltip">Chat with us!</span>
+</a>
+
+<!-- Scroll to top -->
+<button class="scroll-top" title="Back to top">↑</button>
+
+<script src="js/main.js"></script>
+<script src="js/hero.js"></script>
+<script>
+  // Featured products on homepage
+  const FEATURED_IDS = ['p004','p001','p011','p012','p008','p006','p018','p023'];
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('featured-grid');
+    if (!grid) return;
+    const featured = FEATURED_IDS.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+    grid.innerHTML = featured.map(p => `
+      <a href="shop.html?product=${p.id}" class="product-card-link" style="display:block;text-decoration:none;color:inherit;">
+      <div class="product-card">
+        <div class="product-card-img-wrap">
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+          ${p.badge ? `<span class="product-badge badge-${p.badge}">${p.badge}</span>` : ''}
+          <button class="product-wishlist" onclick="this.classList.toggle('wished');this.textContent=this.classList.contains('wished')?'♥':'♡'">♡</button>
+        </div>
+        <div class="product-card-body">
+          <div class="product-cat-tag">${p.tag}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-desc">${p.desc}</div>
+          <div class="product-footer">
+            <div class="product-price">
+              <span class="price-current">£${p.price.toFixed(2)}</span>
+              ${p.oldPrice ? `<span class="price-old">£${p.oldPrice.toFixed(2)}</span>` : ''}
+            </div>
+            <button class="add-cart-btn" onclick="handleAddToCart(this,'${p.id}')">🛒 Add</button>
+          </div>
+        </div>
+      </div>
+      </a>
+    `).join('');
+  });
+
+  window.handleAddToCart = function(btn, id) {
+    const product = PRODUCTS.find(p => p.id === id);
+    if (!product) return;
+    addToCart(product);
+    btn.textContent = '✓ Added';
+    btn.classList.add('added');
+    setTimeout(() => { btn.textContent = '🛒 Add'; btn.classList.remove('added'); }, 1800);
+  };
+
+  function handleNewsletter(e) {
+    e.preventDefault();
+    showToast('Thank you for subscribing! 🎉', '📧');
+    e.target.reset();
+  }
+
+  // Fade-in observer
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+<script src="js/shop.js"></script>
+</body>
+</html>
