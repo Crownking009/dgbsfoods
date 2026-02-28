@@ -10,6 +10,7 @@
   const form = qs('product-form');
   const listEl = qs('admin-list');
   const catSelect = qs('prod-category-select');
+  const catSelect = qs('prod-category-select');
   const catNew = qs('prod-category-new');
   const addCatBtn = qs('add-category');
   const tagSelect = qs('prod-tag-select');
@@ -26,6 +27,7 @@
   const imgPreview = qs('img-preview');
   const resetBtn = qs('prod-reset');
   const exportBtn = qs('export-json');
+  const syncBtn = qs('sync-now');
   const loginForm = qs('admin-login-form');
   const loginOverlay = qs('admin-login');
   const adminApp = document.getElementById('admin-app');
@@ -231,6 +233,31 @@
     a.download = 'products.json';
     a.click();
   });
+
+  // Manual sync button: push current local products to server
+  if (syncBtn) {
+    syncBtn.addEventListener('click', async () => {
+      try {
+        syncBtn.disabled = true;
+        setSyncStatus('Syncing...', 'syncing');
+        const products = load();
+        const ok = await sendToServer(products);
+        if (ok) {
+          setSyncStatus('Synced', 'synced');
+          setTimeout(()=> setSyncStatus('Online','synced'), 1400);
+        } else {
+          setSyncStatus('Offline', 'sync-offline');
+          alert('Sync failed — server may be offline.');
+        }
+      } catch (err) {
+        setSyncStatus('Offline', 'sync-offline');
+        alert('Sync failed — see console for details.');
+        console.error(err);
+      } finally {
+        syncBtn.disabled = false;
+      }
+    });
+  }
 
   // Auth gating: show login overlay if not authenticated
   function showAdmin() {

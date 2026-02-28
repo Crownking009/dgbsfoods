@@ -33,7 +33,10 @@
 <main style="padding:36px 5%;">
   <div style="display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto 12px;">
     <h1 style="margin:0">Product Admin</h1>
-    <div id="sync-status" class="sync-offline">Offline</div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <div id="sync-status" class="sync-offline">Offline</div>
+      <button id="sync-now" class="btn" type="button">Sync Now</button>
+    </div>
   </div>
   <p style="color:var(--gray)">Add new products or edit existing ones. Changes are saved to your browser's localStorage and auto-synced when the server is available.</p>
 
