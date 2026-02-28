@@ -361,6 +361,21 @@
       .cats-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
       .trust-bar-inner { justify-content: flex-start; gap: 16px; }
     }
+    /* Featured marquee (continuous product slideshow) */
+    .marquee-section { padding: 40px 5%; background: linear-gradient(90deg, rgba(255,247,236,0.6), rgba(255,255,255,0)); }
+    .marquee-wrap { overflow: hidden; max-width: 1200px; margin: 0 auto; }
+    .marquee-track { display:flex; gap:18px; align-items:center; will-change:transform; }
+    .marquee-item { flex: 0 0 auto; width: 220px; background: white; border-radius: 12px; box-shadow: 0 8px 26px rgba(22,30,41,0.06); padding: 10px; }
+    .marquee-item img { width:100%; height:140px; object-fit:cover; border-radius:8px; display:block; }
+    .marquee-item .m-name { font-weight:800; color:var(--navy); margin-top:8px; font-size:0.95rem; }
+    .marquee-item .m-price { color:var(--gold-dark); font-weight:800; margin-top:6px; }
+
+    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track.animate { animation: marquee-scroll linear infinite; animation-duration: var(--marquee-duration, 16s); }
+    .marquee-wrap:hover .marquee-track.animate { animation-play-state: paused; }
+
+    @media (max-width: 900px) { .marquee-item { width: 180px; } }
+    @media (max-width: 520px) { .marquee-item { width: 140px; } .marquee-track.animate { animation-duration: calc(var(--marquee-duration,16s) * 0.75); } }
   </style>
 </head>
 <body>
@@ -655,6 +670,17 @@
 </section>
 
 <!-- ============================================================
+     FEATURED MARQUEE — continuous product slideshow
+     ============================================================ -->
+<section class="marquee-section">
+  <div class="section-label">Featured</div>
+  <h2 class="section-title">Featured Products</h2>
+  <div class="marquee-wrap" id="marquee-wrap" style="margin-top:18px;">
+    <div id="marquee-track" class="marquee-track" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ============================================================
      REVIEWS
      ============================================================ -->
 <section class="reviews-section fade-in">
@@ -773,7 +799,8 @@
     <span>
       <a href="terms.html">Terms & Conditions</a> &nbsp;|&nbsp;
       <a href="terms.html#privacy">Privacy Policy</a> &nbsp;|&nbsp;
-      <a href="faq.html">FAQ</a>
+      <a href="faq.html">FAQ</a> &nbsp;|&nbsp;
+      <a href="admin.html">Admin</a>
     </span>
   </div>
 </footer>
@@ -860,6 +887,33 @@
     entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, {threshold:0.1});
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+<script>
+// Continuous featured marquee: populate from PRODUCTS and animate
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const track = document.getElementById('marquee-track');
+    if (!track || !window.PRODUCTS) return;
+    const itemsHtml = window.PRODUCTS.map(p => `
+      <a class="marquee-item" href="product.html?id=${p.id}">
+        <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='assets/images/placeholder.png'">
+        <div class="m-name">${p.name}</div>
+        <div class="m-price">£${p.price.toFixed(2)}</div>
+      </a>
+    `).join('');
+
+    // duplicate for seamless loop
+    track.innerHTML = itemsHtml + itemsHtml;
+
+    // set duration based on number of items for consistent speed
+    const itemCount = window.PRODUCTS.length || 6;
+    // faster marquee: fewer seconds means faster scroll — clamp between 6s and 24s
+    const duration = Math.max(6, Math.min(24, itemCount * 1.0));
+    track.style.setProperty('--marquee-duration', duration + 's');
+    // kick off animation
+    requestAnimationFrame(()=> track.classList.add('animate'));
+  } catch (e) { console.warn('Marquee init failed', e); }
+});
 </script>
 <script src="js/shop.js"></script>
 </body>

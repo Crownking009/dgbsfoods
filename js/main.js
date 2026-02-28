@@ -107,6 +107,23 @@ function updateCartCount() {
   });
 }
 
+// Ensure cart items reflect latest product data (price, image, name)
+function normalizeCart() {
+  const cart = getCart();
+  if (!window.PRODUCTS || !cart.length) return cart;
+  const updated = cart.map(item => {
+    const prod = PRODUCTS.find(p => p.id === item.id);
+    if (!prod) return item; // keep as-is if product not found
+    return Object.assign({}, item, {
+      name: prod.name || item.name,
+      img: prod.img || item.img,
+      price: typeof prod.price === 'number' ? prod.price : item.price,
+    });
+  });
+  localStorage.setItem('dgbs_cart', JSON.stringify(updated));
+  return updated;
+}
+
 function addToCart(product) {
   const cart = getCart();
   const existing = cart.find(i => i.id === product.id);
@@ -215,6 +232,8 @@ window.sendCartToWhatsApp = sendCartToWhatsApp;
 
 // Init on load
 document.addEventListener('DOMContentLoaded', () => {
+  // normalize cart with latest PRODUCTS then render
+  normalizeCart();
   updateCartCount();
   renderCartDrawer();
 });
