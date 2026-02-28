@@ -26,6 +26,7 @@
   // Render detail with thumbnails, qty, share and wishlist
   if (detail) {
     detail.innerHTML = `
+      <div style="margin-bottom:14px;"><button id="back-btn" class="btn btn-outline">← Back to Shop</button></div>
       <div class="product-row">
         <div class="product-gallery">
           <div style="position:relative;">
@@ -60,6 +61,20 @@
         </div>
       </div>
     `;
+  }
+
+  // back button behavior
+  const backBtn = qs('back-btn');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      try {
+        if (document.referrer && document.referrer.includes('shop.html')) {
+          history.back();
+        } else {
+          window.location.href = 'shop.html';
+        }
+      } catch (e) { window.location.href = 'shop.html'; }
+    });
   }
 
   // Rating render

@@ -316,3 +316,16 @@
 @media (max-width: 520px) {
   .hero { min-height: 0; margin-top: 64px; }
 }
+
+/* Additional responsive tweaks for mid/small screens to avoid overflow */
+@media (max-width: 900px) {
+  .hero { min-height: 420px; height: 70vh; }
+  .hero-slide-bg { background-position: center top; }
+  .hero-content { max-width: 560px; }
+}
+
+@media (max-width: 420px) {
+  .hero { min-height: 320px; height: 62vh; margin-top: 64px; }
+  .hero-slide h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); }
+  .hero-slide p { max-width: 100%; }
+}

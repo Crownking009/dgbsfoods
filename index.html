@@ -374,8 +374,20 @@
     .marquee-track.animate { animation: marquee-scroll linear infinite; animation-duration: var(--marquee-duration, 16s); }
     .marquee-wrap:hover .marquee-track.animate { animation-play-state: paused; }
 
-    @media (max-width: 900px) { .marquee-item { width: 180px; } }
-    @media (max-width: 520px) { .marquee-item { width: 140px; } .marquee-track.animate { animation-duration: calc(var(--marquee-duration,16s) * 0.75); } }
+    @media (max-width: 900px) { 
+      .marquee-item { width: 180px; }
+      .marquee-item img { height:120px; }
+    }
+    @media (max-width: 520px) { 
+      .marquee-item { width: 140px; }
+      .marquee-item img { height:100px; }
+      .marquee-track.animate { animation-duration: calc(var(--marquee-duration,16s) * 0.65); }
+    }
+
+    /* Avoid horizontal overflow on small devices */
+    @media (max-width: 420px) {
+      .marquee-wrap { padding-left: 6px; padding-right: 6px; }
+    }
   </style>
 </head>
 <body>
@@ -559,7 +571,7 @@
 <!-- Trust Bar -->
 <div class="trust-bar">
   <div class="trust-bar-inner">
-    <div class="trust-item"><span class="icon">🚚</span> Free Delivery Over £50</div>
+    <div class="trust-item"><span class="icon">🚚</span> Free Delivery Over £500</div>
     <div class="trust-item"><span class="icon">💬</span> Order via WhatsApp</div>
     <div class="trust-item"><span class="icon">🇳🇬</span> 100% Authentic Products</div>
     <div class="trust-item"><span class="icon">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> UK Nationwide Delivery</div>
