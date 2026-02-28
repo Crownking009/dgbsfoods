@@ -118,6 +118,11 @@
       gap: 22px;
     }
 
+    /* Prevent horizontal overflow on small screens */
+    .featured-section { overflow: hidden; }
+    .featured-grid .product-card { min-width: 0; }
+    .featured-inner { padding: 0 6px; }
+
     /* Product card */
     .product-card {
       background: white;
