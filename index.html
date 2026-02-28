@@ -119,7 +119,8 @@
     }
 
     /* Prevent horizontal overflow on small screens */
-    .featured-section { overflow: hidden; }
+    /* allow visible so shadows and card edges are not clipped on narrow viewports */
+    .featured-section { overflow: visible; }
     .featured-grid .product-card { min-width: 0; }
     .featured-inner { padding: 0 6px; }
 
